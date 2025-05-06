@@ -34,14 +34,14 @@ class LaporanKasir extends Page
     {
         return $table
             ->columns([
-                Tables\Columns\Text::make('name')
+                Tables\Columns\TextColumn::make('name')
                     ->label('Nama Kasir')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\Text::make('sales_count')
+                Tables\Columns\TextColumn::make('sales_count')
                     ->label('Jumlah Transaksi')
                     ->sortable(),
-                Tables\Columns\Text::make('sales_sum_total_price')
+                Tables\Columns\TextColumn::make('sales_sum_total_price')
                     ->label('Total Penjualan')
                     ->sortable()
                     ->money('IDR'),

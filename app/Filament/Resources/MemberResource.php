@@ -19,18 +19,18 @@ class MemberResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('name')->label('Nama')->required(),
-            Forms\Components\TextInput::make('phone')->label('Nomor HP'),
-            Forms\Components\Textarea::make('address')->label('Alamat'),
+            Forms\Components\TextInput::make('nama')->label('Nama')->required(),
+            Forms\Components\TextInput::make('telepon')->label('Nomor HP'),
+            Forms\Components\Textarea::make('alamat')->label('Alamat'),
         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('name')->label('Nama'),
-            Tables\Columns\TextColumn::make('phone')->label('Telepon'),
-            Tables\Columns\TextColumn::make('address')->label('Alamat'),
+            Tables\Columns\TextColumn::make('nama')->label('Nama'),
+            Tables\Columns\TextColumn::make('telepon')->label('Telepon'),
+            Tables\Columns\TextColumn::make('alamat')->label('Alamat'),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

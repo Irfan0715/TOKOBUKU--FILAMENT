@@ -19,12 +19,18 @@ class DebtResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('member_name')
+            Forms\Components\TextInput::make('nama_pelanggan')
                 ->label('Nama Member')
                 ->required(),
-            Forms\Components\TextInput::make('amount')
+            Forms\Components\TextInput::make('jumlah_hutang')
                 ->label('Jumlah Hutang')
                 ->numeric()
+                ->required(),
+            Forms\Components\TextInput::make('tanggal')
+                ->label('Tanggal')
+                ->required(),
+            Forms\Components\TextInput::make('keterangan')
+                ->label('Keterangan')
                 ->required(),
         ]);
     }
@@ -32,9 +38,10 @@ class DebtResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('member_name')->label('Member'),
-            Tables\Columns\TextColumn::make('amount')->label('Jumlah')->money('IDR'),
-            Tables\Columns\TextColumn::make('created_at')->label('Tanggal')->date(),
+            Tables\Columns\TextColumn::make('nama_member')->label('Nama Member'),
+            Tables\Columns\TextColumn::make('jumlah_hutang')->label('Jumlah Hutang')->money('IDR'),
+            Tables\Columns\TextColumn::make('tanggal')->label('Tanggal')->date(),
+            Tables\Columns\TextColumn::make('keterangan')->label('Keterangan'),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),
