@@ -15,6 +15,7 @@ class LaporanPenjualanPage extends Page
     protected static ?string $navigationGroup = 'Laporan';
     protected static string $view = 'filament.pages.laporan-penjualan-page';
     protected static ?string $slug = 'laporan-penjualan-export';
+    protected static bool $shouldRegisterNavigation = false;
 
     public $sales;
 

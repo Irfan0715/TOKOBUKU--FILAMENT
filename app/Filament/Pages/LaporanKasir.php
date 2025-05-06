@@ -46,7 +46,7 @@ class LaporanKasir extends Page
                     ->sortable()
                     ->money('IDR'),
             ]);
-    }   
+    }
 
     public function getTableActions()
     {

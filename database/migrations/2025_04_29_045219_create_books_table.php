@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('kode_buku')->unique();
             $table->string('judul');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->string('author');
+            $table->string('cover');
+            $table->double('price');
             $table->integer('stock');
-            $table->double('harga_beli');
-            $table->double('harga_jual');
-            $table->string('cover')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

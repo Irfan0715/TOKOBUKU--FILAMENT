@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
-        'kode_buku',
         'judul',
         'category_id',
-        'stock',
-        'harga_beli',
-        'harga_jual',
+        'author',
         'cover',
+        'price',
+        'stock',
+        'description',
     ];
 
     public function category()

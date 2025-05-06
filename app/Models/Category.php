@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['nama', 'kode_kategori'];
+    protected $fillable = ['kode_kategori', 'nama'];
 
-    protected static function booted()
+    public function books()
     {
-        static::creating(function ($category) {
-            $category->kode_kategori = 'KATEGORI-' . str_pad((Category::count() + 1), 3, '0', STR_PAD_LEFT);
-        });
+        return $this->hasMany(Book::class, 'category_id', 'id');
     }
 
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
+
+

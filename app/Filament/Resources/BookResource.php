@@ -22,22 +22,24 @@ class BookResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                Forms\Components\TextInput::make('judul')
                     ->required()
                     ->label('Judul Buku'),
+
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'nama')
                     ->required()
                     ->label('Kategori Buku'),
+
                 Forms\Components\TextInput::make('author')
                     ->required()
                     ->label('Penulis'),
-                Forms\Components\TextInput::make('publisher')
-                    ->label('Penerbit'),
+
                 Forms\Components\FileUpload::make('cover')
                     ->image()
                     ->directory('covers')
                     ->label('Cover Buku'),
+
                 Forms\Components\TextInput::make('price')
                     ->numeric()
                     ->required()
@@ -46,6 +48,7 @@ class BookResource extends Resource
                     ->numeric()
                     ->required()
                     ->label('Stok'),
+
                 Forms\Components\Textarea::make('description')
                     ->label('Deskripsi'),
             ]);
@@ -56,11 +59,12 @@ class BookResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('cover')->label('Cover')->size(50),
-                Tables\Columns\TextColumn::make('title')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('category.name')->label('Kategori')->sortable(),
+                Tables\Columns\TextColumn::make('judul')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('category.nama')->label('Kategori')->sortable(),
                 Tables\Columns\TextColumn::make('author'),
                 Tables\Columns\TextColumn::make('price')->money('IDR'),
                 Tables\Columns\TextColumn::make('stock'),
+                Tables\Columns\TextColumn::make('description')->searchable()->sortable(),
             ])
             ->filters([])
             ->actions([
