@@ -35,12 +35,12 @@ class LaporanPenjualanResource extends Resource
             ])
             ->actions([
                 Action::make('export_excel')
-                    ->label('Export ke Excel')
+                    ->label('Export to Excel')
                     ->action(fn () => Excel::download(new SalesExport, 'laporan_penjualan.xlsx'))
                     ->requiresConfirmation(),  // Memastikan konfirmasi sebelum melakukan ekspor
 
                 Action::make('print')
-                    ->label('Cetak')
+                    ->label('Print')
                     ->url(fn () => route('laporan.penjualan.print'))
                     ->openUrlInNewTab(),
             ])
