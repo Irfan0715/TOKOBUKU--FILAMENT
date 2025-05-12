@@ -20,7 +20,7 @@ class CategoryResource extends Resource
     {
         return $form->schema([
             Forms\Components\TextInput::make('nama')
-                ->label('Nama Kategori')
+                ->label('Category')
                 ->required()
                 ->maxLength(255),
         ]);
@@ -29,8 +29,8 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('nama')->label('Kategori'),
-            Tables\Columns\TextColumn::make('created_at')->label('Dibuat')->dateTime(),
+            Tables\Columns\TextColumn::make('nama')->label('Category'),
+
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

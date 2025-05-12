@@ -12,7 +12,7 @@ use Filament\Tables\Table;
 
 class SaleResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Transaksi';
+    protected static ?string $navigationGroup = 'Transaction';
     protected static ?string $model = Sale::class;
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
@@ -21,22 +21,22 @@ class SaleResource extends Resource
         return $form->schema([
             Forms\Components\Select::make('book_id')
                 ->relationship('book', 'judul')
-                ->label('Buku')
+                ->label('Book')
                 ->required(),
             Forms\Components\TextInput::make('quantity')
-                ->label('Jumlah')
+                ->label('Amount')
                 ->numeric()
                 ->required(),
             Forms\Components\TextInput::make('total_price')
-                ->label('Total Harga')
+                ->label('Total Price')
                 ->numeric()
                 ->required(),
             Forms\Components\Select::make('payment_method_id')
                 ->relationship('paymentMethod', 'name')
-                ->label('Metode Pembayaran')
+                ->label('Payment Method')
                 ->required(),
             Forms\Components\DatePicker::make('sale_date')
-                ->label('Tanggal Penjualan')
+                ->label('Sale Date')
                 ->required(),
         ]);
     }
@@ -44,11 +44,11 @@ class SaleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('book.judul')->label('Buku'),
-            Tables\Columns\TextColumn::make('quantity')->label('Jumlah'),
-            Tables\Columns\TextColumn::make('total_price')->label('Total')->money('IDR'),
-            Tables\Columns\TextColumn::make('sale_date')->label('Tanggal')->date(),
-            Tables\Columns\TextColumn::make('kasir.name')->label('Kasir'), // Menampilkan nama kasir dari relasi user
+            Tables\Columns\TextColumn::make('book.judul')->label('Book'),
+            Tables\Columns\TextColumn::make('quantity')->label('Amount'),
+            Tables\Columns\TextColumn::make('total_price')->label('Total Price')->money('IDR'),
+            Tables\Columns\TextColumn::make('sale_date')->label('Sale Date')->date(),
+
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

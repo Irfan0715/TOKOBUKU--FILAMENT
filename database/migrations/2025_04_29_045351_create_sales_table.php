@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('quantity');
             $table->double('total_price');
             $table->foreignId('payment_method_id')->constrained()->cascadeOnDelete(); // relasi ke payment_methods
-            $table->foreignId('kasir_id')->constrained('users')->cascadeOnDelete(); // relasi ke users (sebagai kasir)
             $table->date('sale_date');
             $table->timestamps();
         });

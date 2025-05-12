@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 class PenjualanPerBulanChart extends ChartWidget
 {
     protected static ?string $chartId = 'penjualanPerBulan';
-    protected static ?string $heading = 'Penjualan Buku per Bulan';
+    protected static ?string $heading = 'Book Sales per Month';
 
     protected function getData(): array
     {

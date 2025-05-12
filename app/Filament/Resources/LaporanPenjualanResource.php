@@ -14,9 +14,9 @@ use Filament\Tables\Actions\Action;
 class LaporanPenjualanResource extends Resource
 {
     protected static ?string $model = Sale::class;
-    protected static ?string $navigationLabel = 'Laporan Penjualan';
+    protected static ?string $navigationLabel = 'Sales report';
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $navigationGroup = 'Laporan';
+    protected static ?string $navigationGroup = 'Report';
 
     public static function getPages(): array
     {

@@ -14,7 +14,6 @@ class Sale extends Model
         'quantity',
         'total_price',
         'payment_method_id',
-        'kasir_id',
         'sale_date',
     ];
 

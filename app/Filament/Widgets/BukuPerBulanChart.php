@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 class BukuPerBulanChart extends ChartWidget
 {
     protected static ?string $chartId = 'bukuPerBulan';
-    protected static ?string $heading = 'Stok Buku Masuk per Bulan';
+    protected static ?string $heading = 'Book Stock Incoming per Month';
 
     protected function getData(): array
     {
@@ -23,7 +23,7 @@ class BukuPerBulanChart extends ChartWidget
         return 'bar';
     }
 
-    
+
     protected function getOptions(): array
     {
         $data = Book::selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')

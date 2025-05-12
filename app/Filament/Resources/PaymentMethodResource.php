@@ -19,14 +19,17 @@ class PaymentMethodResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('name')->label('Metode Pembayaran')->required(),
+            Forms\Components\TextInput::make('name')
+                ->label('Payment Method')
+                ->required(),
         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('name')->label('Metode Pembayaran'),
+            Tables\Columns\TextColumn::make('name')
+            ->label('Payment Method'),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

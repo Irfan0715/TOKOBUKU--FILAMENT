@@ -12,7 +12,7 @@ use Filament\Tables\Table;
 
 class StockOpnameResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Transaksi';
+    protected static ?string $navigationGroup = 'Transaction';
     protected static ?string $model = StockOpname::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -20,20 +20,34 @@ class StockOpnameResource extends Resource
     {
         return $form->schema([
             Forms\Components\Select::make('book_id')
-                ->relationship('book', 'title')
-                ->label('Buku')
+                ->relationship('book', 'judul') // pastikan di model Book pakai 'judul'
+                ->label('Book')
                 ->required(),
-            Forms\Components\TextInput::make('stock')->label('Stok')->numeric()->required(),
-            Forms\Components\DatePicker::make('date')->label('Tanggal')->required(),
+            Forms\Components\TextInput::make('stok_sebelumnya')
+                ->label('Previous Stock')
+                ->numeric()
+                ->required(),
+            Forms\Components\TextInput::make('stok_sekarang')
+                ->label('Stock Now')
+                ->numeric()
+                ->required(),
+            Forms\Components\TextInput::make('keterangan')
+                ->label('Information')
+                ->maxLength(255),
+            Forms\Components\DatePicker::make('tanggal')
+                ->label('Date')
+                ->required(),
         ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('book.title')->label('Buku'),
-            Tables\Columns\TextColumn::make('stock')->label('Stok'),
-            Tables\Columns\TextColumn::make('date')->label('Tanggal')->date(),
+            Tables\Columns\TextColumn::make('book.judul')->label('Buku'),
+            Tables\Columns\TextColumn::make('stok_sebelumnya')->label('Previous Stock'),
+            Tables\Columns\TextColumn::make('stok_sekarang')->label('Stock Now'),
+            Tables\Columns\TextColumn::make('keterangan')->label('Information'),
+            Tables\Columns\TextColumn::make('tanggal')->label('Date')->date(),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

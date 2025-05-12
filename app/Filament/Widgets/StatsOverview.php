@@ -14,12 +14,12 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Card::make('Total Buku', Book::count() . ' Judul'),
-            Card::make('Total Member', Member::count() . ' Orang'),
-            Card::make('Penjualan Hari Ini', 'Rp ' . number_format(
+            Card::make('Total Books', Book::count() . ' Judul'),
+            Card::make('Total Members', Member::count() . ' Orang'),
+            Card::make('Today Sales', 'Rp ' . number_format(
                 Sale::whereDate('created_at', now())->sum('total_price'), 0, ',', '.'
             )),
-            Card::make('Total Stok Buku', Book::sum('stock') . ' Buku'),
+            Card::make('Total Book Stock', Book::sum('stock') . ' Buku'),
         ];
     }
 }

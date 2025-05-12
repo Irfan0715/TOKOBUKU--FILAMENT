@@ -12,7 +12,7 @@ use Filament\Tables\Table;
 
 class DebtResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Transaksi';
+    protected static ?string $navigationGroup = 'Transaction';
     protected static ?string $model = Debt::class;
     protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
@@ -20,17 +20,17 @@ class DebtResource extends Resource
     {
         return $form->schema([
             Forms\Components\TextInput::make('nama_pelanggan')
-                ->label('Nama Member')
+                ->label('Member Name')
                 ->required(),
             Forms\Components\TextInput::make('jumlah_hutang')
-                ->label('Jumlah Hutang')
+                ->label('Amount of Debt')
                 ->numeric()
                 ->required(),
-            Forms\Components\TextInput::make('tanggal')
-                ->label('Tanggal')
-                ->required(),
+           Forms\Components\DatePicker::make('tanggal')
+            ->label('Date')
+            ->required(),
             Forms\Components\TextInput::make('keterangan')
-                ->label('Keterangan')
+                ->label('Information')
                 ->required(),
         ]);
     }
@@ -38,10 +38,10 @@ class DebtResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('nama_member')->label('Nama Member'),
-            Tables\Columns\TextColumn::make('jumlah_hutang')->label('Jumlah Hutang')->money('IDR'),
-            Tables\Columns\TextColumn::make('tanggal')->label('Tanggal')->date(),
-            Tables\Columns\TextColumn::make('keterangan')->label('Keterangan'),
+            Tables\Columns\TextColumn::make('nama_pelanggan')->label('Member Name'),
+            Tables\Columns\TextColumn::make('jumlah_hutang')->label('Amount of Debt')->money('IDR'),
+            Tables\Columns\TextColumn::make('tanggal')->label('Date')->date(),
+            Tables\Columns\TextColumn::make('keterangan')->label('Information'),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

@@ -16,9 +16,9 @@ return [
 
     'navigation_groups' => [
         'Master Data',
-        'Transaksi',
-        'Pengguna',
-        'Laporan',
+        'Transaction',
+        'User',
+        'Report',
     ],
 
     /*

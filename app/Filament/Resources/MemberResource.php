@@ -12,7 +12,7 @@ use Filament\Tables\Table;
 
 class MemberResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Master Data';
+    protected static ?string $navigationGroup = 'User';
     protected static ?string $model = Member::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 

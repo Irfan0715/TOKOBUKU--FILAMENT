@@ -16,7 +16,7 @@ class BookResource extends Resource
     protected static ?string $model = Book::class;
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationGroup = 'Master Data';
-    protected static ?string $navigationLabel = 'Produk Buku';
+    protected static ?string $navigationLabel = 'Book Products';
 
     public static function form(Form $form): Form
     {
@@ -24,21 +24,20 @@ class BookResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('judul')
                     ->required()
-                    ->label('Judul Buku'),
-
+                    ->label('Title'),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'nama')
                     ->required()
-                    ->label('Kategori Buku'),
+                    ->label('Category'),
 
                 Forms\Components\TextInput::make('author')
                     ->required()
-                    ->label('Penulis'),
+                    ->label('Author'),
 
                 Forms\Components\FileUpload::make('cover')
                     ->image()
                     ->directory('covers')
-                    ->label('Cover Buku'),
+                    ->label('Book Cover'),
 
                 Forms\Components\TextInput::make('price')
                     ->numeric()
@@ -47,10 +46,10 @@ class BookResource extends Resource
                 Forms\Components\TextInput::make('stock')
                     ->numeric()
                     ->required()
-                    ->label('Stok'),
+                    ->label('Stock'),
 
                 Forms\Components\Textarea::make('description')
-                    ->label('Deskripsi'),
+                    ->label('Description'),
             ]);
     }
 
@@ -59,12 +58,13 @@ class BookResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('cover')->label('Cover')->size(50),
-                Tables\Columns\TextColumn::make('judul')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('category.nama')->label('Kategori')->sortable(),
-                Tables\Columns\TextColumn::make('author'),
+                Tables\Columns\TextColumn::make('judul')->label('Title')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('category.nama')->label('Category')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('author')->searchable(),
                 Tables\Columns\TextColumn::make('price')->money('IDR'),
                 Tables\Columns\TextColumn::make('stock'),
                 Tables\Columns\TextColumn::make('description')->searchable()->sortable(),
+
             ])
             ->filters([])
             ->actions([

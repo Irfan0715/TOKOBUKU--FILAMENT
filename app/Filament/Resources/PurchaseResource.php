@@ -12,29 +12,42 @@ use Filament\Tables\Table;
 
 class PurchaseResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Transaksi';
+    protected static ?string $navigationGroup = 'Transaction';
     protected static ?string $model = Purchase::class;
     protected static ?string $navigationIcon = 'heroicon-o-truck';
 
-    public static function form(Form $form): Form
-    {
-        return $form->schema([
-            Forms\Components\Select::make('book_id')
-                ->relationship('book', 'title')
-                ->label('Buku')
-                ->required(),
-            Forms\Components\TextInput::make('quantity')->numeric()->label('Jumlah')->required(),
-            Forms\Components\TextInput::make('purchase_price')->numeric()->label('Harga Beli')->required(),
-        ]);
-    }
+public static function form(Form $form): Form
+{
+    return $form->schema([
+        Forms\Components\Select::make('book_id')
+            ->relationship('book', 'judul')
+            ->label('Book')
+            ->required(),
+
+        Forms\Components\TextInput::make('jumlah')
+            ->numeric()
+            ->label('Amount')
+            ->required(),
+
+        Forms\Components\TextInput::make('harga_beli')
+            ->numeric()
+            ->label('Purchase price')
+            ->required(),
+
+        Forms\Components\DatePicker::make('tanggal')
+            ->label('Date')
+            ->required(),
+    ]);
+}
+
 
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('book.title')->label('Buku'),
-            Tables\Columns\TextColumn::make('quantity')->label('Jumlah'),
-            Tables\Columns\TextColumn::make('purchase_price')->label('Harga')->money('IDR'),
-            Tables\Columns\TextColumn::make('created_at')->label('Tanggal')->dateTime(),
+            Tables\Columns\TextColumn::make('book.judul')->label('Book'),
+            Tables\Columns\TextColumn::make('jumlah')->label('Amount'),
+            Tables\Columns\TextColumn::make('harga_beli')->label('Purchase price')->money('IDR'),
+            Tables\Columns\TextColumn::make('tanggal')->label('Date')->dateTime(),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),
