@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return redirect('index.html');
+});
+
 // Laporan Kasir
 Route::get('/laporan-kasir/print', [LaporanKasirController::class, 'print'])->name('laporan.kasir.print');
 Route::get('/laporan-kasir/export-excel', [LaporanKasirController::class, 'exportExcel'])->name('laporan.kasir.excel');
