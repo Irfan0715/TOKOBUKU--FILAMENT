@@ -1,15 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Book; 
 use App\Http\Controllers\LaporanKasirController;
 use App\Http\Controllers\LaporanPenjualanController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', function () {
-    return redirect('index.html');
+    $books = Book::all();  // Ambil data dari model
+    return view('landing', compact('books'));  // Kirim data ke view
 });
 
 // Laporan Kasir
