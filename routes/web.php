@@ -10,6 +10,11 @@ Route::get('/', function () {
     return view('landing', compact('books'));  // Kirim data ke view
 });
 
+Route::get('/project', function () {
+    $books = \App\Models\Book::all();
+    return view('project', compact('books'));
+});
+
 // Laporan Kasir
 Route::get('/laporan-kasir/print', [LaporanKasirController::class, 'print'])->name('laporan.kasir.print');
 Route::get('/laporan-kasir/export-excel', [LaporanKasirController::class, 'exportExcel'])->name('laporan.kasir.excel');

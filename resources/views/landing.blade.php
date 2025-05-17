@@ -55,16 +55,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="/" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="project.html" class="nav-item nav-link">Project</a>
+                        <a href="/project" class="nav-item nav-link">Project</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
                                 <a href="team.html" class="dropdown-item">Our Team</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -276,8 +275,8 @@
             <div class="container-xxl py-5">
                 <div class="container px-lg-5">
                     <div class="section-title position-relative text-center mb-5 pb-2">
-                        <h6 class="position-relative d-inline text-primary ps-4">Daftar Buku</h6>
-                        <h2 class="mt-2">Buku Tersedia di Toko</h2>
+                        <h6 class="position-relative d-inline text-primary ps-4">List of Books</h6>
+                        <h2 class="mt-2">Books Available at the Store</h2>
                     </div>
 
                     <div class="row g-4 portfolio-container">
@@ -287,9 +286,9 @@
                                     <img src="{{ asset('storage/' . $book->cover) }}" class="card-img-top" alt="Cover Buku">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $book->judul }}</h5>
-                                        <p class="card-text"><strong>Penulis:</strong> {{ $book->author }}</p>
-                                        <p class="card-text"><strong>Harga:</strong> Rp{{ number_format($book->price, 0, ',', '.') }}</p>
-                                        <p class="card-text"><strong>Stok:</strong> {{ (int)$book->stock }}</p>
+                                        <p class="card-text"><strong>Writer:</strong> {{ $book->author }}</p>
+                                        <p class="card-text"><strong>Price:</strong> Rp{{ number_format($book->price, 0, ',', '.') }}</p>
+                                        <p class="card-text"><strong>Stock:</strong> {{ (int)$book->stock }}</p>
                                         <p class="card-text text-muted">{{ $book->description }}</p>
                                     </div>
                                 </div>
