@@ -75,7 +75,7 @@
 <button type="button" class="btn text-white" style="font-size: 20px;">
     <i class="fa fa-shopping-cart"></i>
 </button>
-                    <a href="admin/login" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-3">Login Admin</a>
+                
                 </div>
             </nav>
 
