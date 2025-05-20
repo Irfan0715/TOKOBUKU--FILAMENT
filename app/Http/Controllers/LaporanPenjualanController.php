@@ -12,7 +12,9 @@ class LaporanPenjualanController extends Controller
 {
     public function print()
     {
-        $sales = Sale::with('kasir')->get();
+        // Kalau ingin relasi user, ganti 'kasir' jadi 'user'
+        $sales = Sale::with('user')->get();
+
         return view('filament.pages.laporan-penjualan-pdf', compact('sales'));
     }
 
@@ -23,7 +25,8 @@ class LaporanPenjualanController extends Controller
 
     public function exportPdf()
     {
-        $sales = Sale::with('kasir')->get();
+        $sales = Sale::with('user')->get();
+
         $pdf = Pdf::loadView('filament.pages.laporan-penjualan-pdf', compact('sales'));
         return $pdf->download('laporan_penjualan.pdf');
     }
