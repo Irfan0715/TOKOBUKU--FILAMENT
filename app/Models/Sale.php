@@ -22,9 +22,9 @@ class Sale extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function kasir()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'kasir_id');
+        return $this->belongsTo(User::class);
     }
 
     public function paymentMethod()

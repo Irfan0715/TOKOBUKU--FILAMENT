@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->constrained()->cascadeOnDelete(); // relasi ke books
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete(); // relasi ke users
+            $table->foreignId('payment_method_id')->constrained()->cascadeOnDelete(); // relasi ke payment_methods
             $table->integer('quantity');
             $table->double('total_price');
-            $table->foreignId('payment_method_id')->constrained()->cascadeOnDelete(); // relasi ke payment_methods
             $table->date('sale_date');
             $table->timestamps();
         });

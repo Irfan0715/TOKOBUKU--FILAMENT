@@ -14,10 +14,10 @@ class SalesExport implements FromCollection, WithHeadings
             ->get()
             ->map(function ($sale) {
                 return [
-                    'ID' => $sale->id,
-                    'Kasir' => $sale->user->name,
+                    'ID'      => $sale->id,
+                    'Kasir'   => $sale->user ? $sale->user->name : '-', // aman kalau null
                     'Tanggal' => $sale->sale_date,
-                    'Total' => $sale->total_amount,
+                    'Total'   => $sale->total_price, // kolom total_price di database
                 ];
             });
     }
