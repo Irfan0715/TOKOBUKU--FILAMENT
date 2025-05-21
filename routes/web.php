@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Book; 
-use App\Http\Controllers\LaporanKasirController;
 use App\Http\Controllers\LaporanPenjualanController;
 
 Route::get('/', function () {
@@ -14,11 +13,6 @@ Route::get('/project', function () {
     $books = \App\Models\Book::all();
     return view('project', compact('books'));
 });
-
-// Laporan Kasir
-Route::get('/laporan-kasir/print', [LaporanKasirController::class, 'print'])->name('laporan.kasir.print');
-Route::get('/laporan-kasir/export-excel', [LaporanKasirController::class, 'exportExcel'])->name('laporan.kasir.excel');
-Route::get('/laporan-kasir/export-pdf', [LaporanKasirController::class, 'exportPdf'])->name('laporan.kasir.pdf');
 
 // Laporan Penjualan
 Route::get('/laporan-penjualan/print', [LaporanPenjualanController::class, 'print'])->name('laporan.penjualan.print');
