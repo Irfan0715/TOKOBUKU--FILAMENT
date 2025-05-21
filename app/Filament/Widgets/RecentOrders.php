@@ -12,7 +12,6 @@ class RecentOrders extends BaseWidget
 {
     protected static ?string $heading = '📑 Recent Orders';
 
-    // Ini harus full agar muncul full width dan di baris baru
     protected int|string|array $columnSpan = 'full';
 
     protected function getTableColumnSpan(): int|string|null
@@ -23,15 +22,22 @@ class RecentOrders extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(Order::query()->latest()->limit(5))
+            ->query(
+                Order::query()
+                    ->select('orders.*')
+                    ->join('members', 'members.id', '=', 'orders.member_id')
+                    ->latest('orders.created_at')
+                    ->limit(5)
+            )
             ->columns([
-                TextColumn::make('id')->label('Order ID')->sortable(),
+                TextColumn::make('id')
+                    ->label('Order ID')
+                    ->sortable(),
 
                 TextColumn::make('member.nama')
                     ->label('Customer')
-                    ->sortable(function ($query, $direction) {
-                        $query->orderBy('members.nama', $direction);
-                    })
+                    // Gunakan nama kolom alias untuk sortable
+                    ->sortable('members.nama')
                     ->searchable(['members.nama']),
 
                 TextColumn::make('order_date')
