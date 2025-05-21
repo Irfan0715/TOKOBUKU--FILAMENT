@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DebtResource\Pages;
 use App\Models\Debt;
+use App\Models\Member;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,16 +20,20 @@ class DebtResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('nama_pelanggan')
+            Forms\Components\Select::make('member_id')
                 ->label('Member Name')
+                ->relationship('member', 'nama')
                 ->required(),
+
             Forms\Components\TextInput::make('jumlah_hutang')
                 ->label('Amount of Debt')
                 ->numeric()
                 ->required(),
-           Forms\Components\DatePicker::make('tanggal')
-            ->label('Date')
-            ->required(),
+
+            Forms\Components\DatePicker::make('tanggal')
+                ->label('Date')
+                ->required(),
+
             Forms\Components\TextInput::make('keterangan')
                 ->label('Information')
                 ->required(),
@@ -38,10 +43,21 @@ class DebtResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('nama_pelanggan')->label('Member Name'),
-            Tables\Columns\TextColumn::make('jumlah_hutang')->label('Amount of Debt')->money('IDR'),
-            Tables\Columns\TextColumn::make('tanggal')->label('Date')->date(),
-            Tables\Columns\TextColumn::make('keterangan')->label('Information'),
+            Tables\Columns\TextColumn::make('member.nama')
+                ->label('Member Name')
+                ->searchable()
+                ->sortable(),
+
+            Tables\Columns\TextColumn::make('jumlah_hutang')
+                ->label('Amount of Debt')
+                ->money('IDR'),
+
+            Tables\Columns\TextColumn::make('tanggal')
+                ->label('Date')
+                ->date(),
+
+            Tables\Columns\TextColumn::make('keterangan')
+                ->label('Information'),
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

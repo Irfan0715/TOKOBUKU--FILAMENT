@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('debts', function (Blueprint $table) {
+       Schema::create('debts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pelanggan');
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
             $table->double('jumlah_hutang');
             $table->date('tanggal');
             $table->string('keterangan')->nullable();

@@ -25,6 +25,7 @@ class BookResource extends Resource
                 Forms\Components\TextInput::make('judul')
                     ->required()
                     ->label('Title'),
+
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'nama')
                     ->required()
@@ -43,6 +44,7 @@ class BookResource extends Resource
                     ->numeric()
                     ->required()
                     ->label('Harga'),
+
                 Forms\Components\TextInput::make('stock')
                     ->numeric()
                     ->required()
@@ -57,15 +59,44 @@ class BookResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('cover')->label('Cover')->size(50),
-                Tables\Columns\TextColumn::make('judul')->label('Title')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('category.nama')->label('Category')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('author')->searchable(),
-                Tables\Columns\TextColumn::make('price')->money('IDR'),
-                Tables\Columns\TextColumn::make('stock'),
-                Tables\Columns\TextColumn::make('description')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('cover')
+                    ->label('Cover')
+                    ->formatStateUsing(fn ($state) => $state
+                        ? '<img src="' . asset('storage/' . $state) . '" style="height: 150px; width: 100px; object-fit: cover; border-radius: 8px;" />'
+                        : '-')
+                    ->html(),
 
+                Tables\Columns\TextColumn::make('judul')
+                    ->label('Title')
+                    ->searchable()
+                    ->sortable()
+                    ->limit(30)
+                    ->wrap(),
+
+                Tables\Columns\TextColumn::make('category.nama')
+                    ->label('Category')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('author')
+                    ->label('Author')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->label('Harga')
+                    ->money('IDR'),
+
+                Tables\Columns\TextColumn::make('stock')
+                    ->label('Stock'),
+
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Description')
+                    ->limit(50)
+                    ->wrap()
+                    ->toggleable(isToggledHiddenByDefault: false),
             ])
+            ->defaultPaginationPageOption(10)
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),

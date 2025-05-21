@@ -12,15 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-             $table->id();
-        $table->foreignId('member_id')->constrained()->onDelete('cascade');
-        $table->dateTime('order_date');
-        $table->enum('status', ['Pending', 'Shipped', 'Completed', 'Cancelled']);
-        $table->decimal('shipping_cost', 10, 2)->default(0);
-        $table->decimal('vat', 10, 2)->default(0);
-        $table->decimal('discount', 10, 2)->default(0);
-        $table->decimal('total', 12, 2);
-        $table->timestamps();
+            $table->id();
+            $table->foreignId('member_id')->constrained();
+            $table->foreignId('book_id')->constrained();
+            $table->foreignId('payment_method_id')->constrained(); // <-- ini tambahan kolom payment_method_id
+            $table->dateTime('order_date');
+            $table->string('status');
+            $table->decimal('subtotal', 15, 2)->default(0);
+            $table->decimal('shipping_cost', 15, 2)->default(0);
+            $table->decimal('vat', 5, 2)->default(0); // persentase
+            $table->decimal('discount', 5, 2)->default(0); // persentase
+            $table->decimal('total', 15, 2)->default(0);
+            $table->timestamps();
         });
     }
 
