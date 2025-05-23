@@ -32,7 +32,7 @@ class BukuPerBulanChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Buku Masuk',
+                    'label' => 'Book Incoming',
                     'data' => $bookSeries,
                     'backgroundColor' => 'rgba(34, 197, 94, 0.7)',
                     'borderColor' => '#22c55e',

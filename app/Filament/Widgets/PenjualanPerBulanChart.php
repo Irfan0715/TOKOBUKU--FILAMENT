@@ -41,7 +41,7 @@ class PenjualanPerBulanChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Penjualan',
+                    'label' => 'Sales',
                     'data' => $salesSeries,
                     'borderColor' => '#3b82f6',
                     'backgroundColor' => 'rgba(59, 130, 246, 0.4)',
