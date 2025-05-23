@@ -29,7 +29,18 @@ class UserResource extends Resource
             Forms\Components\TextInput::make('email')
                 ->label('Email')
                 ->email()
-                ->required(),
+                ->required()
+                ->disabled(function ($get, $livewire) {
+                    // Saat create, email bisa diisi
+                    if ($livewire instanceof CreateRecord) {
+                        return false;
+                    }
+                    // Saat edit, hanya user itu sendiri yang bisa edit email-nya
+                    if ($livewire instanceof EditRecord) {
+                        return $livewire->getRecord()?->id !== auth()->id();
+                    }
+                    return true;
+                }),
 
             Forms\Components\TextInput::make('password')
                 ->label('Password')
@@ -37,7 +48,7 @@ class UserResource extends Resource
                 ->dehydrateStateUsing(fn ($state) => $state ? Hash::make($state) : null)
                 ->required(fn (string $operation) => $operation === 'create')
                 ->visible(function ($get, $livewire) {
-                    
+                    // Password tampil saat create, atau saat edit dirinya sendiri
                     if ($livewire instanceof CreateRecord) {
                         return true;
                     }
