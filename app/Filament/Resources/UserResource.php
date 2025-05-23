@@ -36,10 +36,18 @@ class UserResource extends Resource
                 ->password()
                 ->dehydrateStateUsing(fn ($state) => $state ? Hash::make($state) : null)
                 ->required(fn (string $operation) => $operation === 'create')
-                ->visible(fn ($get, $livewire) =>
-                    $livewire instanceof CreateRecord ||
-                    ($livewire instanceof EditRecord && $livewire->getRecord()?->id === auth()->id())
-                ),
+                ->visible(function ($get, $livewire) {
+                    
+                    if ($livewire instanceof CreateRecord) {
+                        return true;
+                    }
+
+                    if ($livewire instanceof EditRecord) {
+                        return $livewire->getRecord()?->id === auth()->id();
+                    }
+
+                    return false;
+                }),
         ]);
     }
 
